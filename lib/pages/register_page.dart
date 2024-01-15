@@ -2,23 +2,20 @@ import 'package:chat/components/my_button.dart';
 import 'package:chat/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordConfirmController = TextEditingController();
 
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
-  
     final void Function()? onTap;
 
-  LoginPage({super.key, required this.onTap});
+  RegisterPage({super.key, required this.onTap});
 
-  //login method
-  void login(){
-    //
+  //register method
+
+  void register(){
+
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +26,15 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //logo
-            Icon(
-              Icons.message,
-              size: 60, color: Theme.of(context).colorScheme.primary
-            ),
+            Icon(Icons.message,
+                size: 60, color: Theme.of(context).colorScheme.primary),
 
             const SizedBox(height: 50),
 
             //welcome back message
 
             Text(
-              "Welcome back!",
+              "It's nice to have you with us!",
               style: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
                 fontSize: 16,
@@ -65,11 +60,19 @@ class LoginPage extends StatelessWidget {
               controller: _passwordController,
             ),
 
+            SizedBox(height: 10),
+
+            MyTextField(
+              hintText: "Confirm your password",
+              obscure: true,
+              controller: _passwordConfirmController,
+            ),
+
             SizedBox(height: 25),
 
             MyButton(
-              buttonText: "Login",
-              onTap: login,
+              buttonText: "Register",
+              onTap: register,
             ),
 
             SizedBox(height: 25),
@@ -77,21 +80,19 @@ class LoginPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Not a member? ",
-                style: 
-                  TextStyle(
+                Text(
+                  "Already a member? ",
+                  style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 GestureDetector(
-
                   onTap: onTap,
-
-                  child: Text("Register now!", 
-                  style: 
-                  TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).colorScheme.primary,
+                  child: Text(
+                    "Login now!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 ),
