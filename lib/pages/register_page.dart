@@ -36,7 +36,8 @@ class RegisterPage extends StatelessWidget {
             Text(
               "It's nice to have you with us!",
               style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
+                // color: Theme.of(context).colorScheme.primary,
+                color: Colors.indigo.shade200,
                 fontSize: 16,
               ),
             ),
@@ -92,7 +93,8 @@ class RegisterPage extends StatelessWidget {
                     "Login now!",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.primary,
+                      // color: Theme.of(context).colorScheme.primary,
+                      color: Colors.indigo.shade200,
                     ),
                   ),
                 ),

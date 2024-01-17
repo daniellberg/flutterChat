@@ -55,9 +55,10 @@ class _LoginPageState extends State<LoginPage> {
             Text(
               "Welcome back!",
               style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 16,
-              ),
+                  // color: Theme.of(context).colorScheme.primary,
+                  color: Colors.indigo.shade200,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500),
             ),
 
             const SizedBox(height: 25),
@@ -84,9 +85,25 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 35,
               width: 100,
-              child: ElevatedButton(
+              child: FilledButton(
                 onPressed: login,
-                child: Text("Login"),
+                child: Text(
+                  "Sign in",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                      Colors.grey.shade200), // Background color
+                  foregroundColor: MaterialStateProperty.all(
+                      Colors.indigo.shade200), // Text color
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0), // Border radius
+                    ),
+                  ),
+                ),
               ),
             ),
 
@@ -108,7 +125,8 @@ class _LoginPageState extends State<LoginPage> {
                       "Register now!",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        color: Theme.of(context).colorScheme.primary,
+                        // color: Theme.of(context).colorScheme.primary,
+                        color: Colors.indigo.shade200,
                       ),
                     ),
                   ),
