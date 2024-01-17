@@ -1,24 +1,40 @@
+import 'package:chat/auth/auth_service.dart';
 import 'package:chat/components/my_button.dart';
 import 'package:chat/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
-  
-    final void Function()? onTap;
+class LoginPage extends StatefulWidget {
+  final void Function()? onTap;
 
   LoginPage({super.key, required this.onTap});
 
-  //login method
-  void login(){
-    //
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
   }
 
+  //login method
+  void login() async {
+    //auth service
+    final authService = AuthService();
 
+// print(_emailController.text);
 
+    final email = _emailController.text;
+    final password = _passwordController.text;
 
+    await authService.signInwithEmailPassword(email, password);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +45,8 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //logo
-            Icon(
-              Icons.message,
-              size: 60, color: Theme.of(context).colorScheme.primary
-            ),
+            Icon(Icons.message,
+                size: 60, color: Theme.of(context).colorScheme.primary),
 
             const SizedBox(height: 50),
 
@@ -57,7 +71,7 @@ class LoginPage extends StatelessWidget {
             ),
 
             SizedBox(height: 10),
-            // email field
+            // password field
 
             MyTextField(
               hintText: "Password",
@@ -67,35 +81,39 @@ class LoginPage extends StatelessWidget {
 
             SizedBox(height: 25),
 
-            MyButton(
-              buttonText: "Login",
-              onTap: login,
+            SizedBox(
+              height: 35,
+              width: 100,
+              child: ElevatedButton(
+                onPressed: login,
+                child: Text("Login"),
+              ),
             ),
 
             SizedBox(height: 25),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Not a member? ",
-                style: 
-                  TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-                GestureDetector(
-
-                  onTap: onTap,
-
-                  child: Text("Register now!", 
-                  style: 
-                  TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).colorScheme.primary,
+            Flexible(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Not a member? ",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
-                ),
-              ],
+                  GestureDetector(
+                    onTap: widget.onTap,
+                    child: Text(
+                      "Register now!",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),

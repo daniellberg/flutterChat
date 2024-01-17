@@ -8,7 +8,7 @@ class MyTextField extends StatelessWidget {
   const MyTextField({
     super.key, 
     required this.hintText, 
-    required this.obscure, 
+    this.obscure = false, 
     required this.controller
   });
 
@@ -16,8 +16,9 @@ class MyTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: TextField(
+      child: TextFormField(
         obscureText: obscure,
+        controller: controller, //!!!!!!!!!!!!!!!!!!!!!!!!!!
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderSide:
