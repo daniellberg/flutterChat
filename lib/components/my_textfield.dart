@@ -19,7 +19,6 @@ class MyTextField extends StatelessWidget {
       child: TextFormField(
         obscureText: obscure,
         controller: controller, //!!!!!!!!!!!!!!!!!!!!!!!!!!
-        textAlign: TextAlign.center,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderSide:
